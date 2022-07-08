@@ -78,7 +78,8 @@ namespace eShopSolution.Application.Catalog.Products
                 };
             }
             _context.Products.Add(product);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return product.Id;
         }
 
         public async Task<int> Delete(int productId)
@@ -138,6 +139,11 @@ namespace eShopSolution.Application.Catalog.Products
                 Items = data
             };
             return pagedResult;
+        }
+
+        public async Task<ProductViewModel> GetById(int productId)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<List<ProductImageViewModel>> GetListImage(int productId)

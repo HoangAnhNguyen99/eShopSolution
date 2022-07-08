@@ -1,5 +1,6 @@
 using eSheopSolution.Utilities.Constants;
 using eShopSolution.Application.Catalog.Products;
+using eShopSolution.Application.Common;
 using eShopSolution.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -9,7 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<EShopDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
 
+builder.Services.AddTransient<IStorageService, FileStorageService>();
 builder.Services.AddTransient<IPublicProductService, PublicProductService>();
+builder.Services.AddTransient<IManageProductService, ManageProductService>();
 
 // Add services to the container.       
 builder.Services.AddControllersWithViews();
