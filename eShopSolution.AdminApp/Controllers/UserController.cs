@@ -26,6 +26,10 @@ namespace eShopSolution.AdminApp.Controllers
         public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 10)
         {
             var sessions = HttpContext.Session.GetString("Token");
+
+            if (string.IsNullOrEmpty(sessions))
+                return RedirectToAction("Login", "User");
+
             var request = new GetUserPagingRequest()
             {
                 BearerToken = sessions,
@@ -72,6 +76,23 @@ namespace eShopSolution.AdminApp.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "User");
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(RegisterRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _userApiClient.RegisterUser(request);
+            if (result)
+                return RedirectToAction("Index");
+            return View(request);
         }
 
         private ClaimsPrincipal ValidateToken(string jwtToken)
