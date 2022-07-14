@@ -24,10 +24,10 @@ namespace eShopSolution.BackendApi.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var resultToken = await _userService.Authencate(request);
-            if (string.IsNullOrEmpty(resultToken))
-                return BadRequest("Username or pass word is incorrect.");
-            return Ok(resultToken);
+            var result = await _userService.Authencate(request);
+            if (!result.IsSuccessed)
+                return BadRequest(result.Message);
+            return Ok(result);
         }
 
         [HttpPost]
@@ -37,8 +37,23 @@ namespace eShopSolution.BackendApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
             var result = await _userService.Register(request);
-            if (!result)
-                return BadRequest("Register is unsuccessful.");
+            if (!result.IsSuccessed)
+                return BadRequest(result.Message);
+            return Ok();
+        }
+
+        //PUT: http://localhost/api/users/id
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UserUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.Update(id, request);
+            if (!result.IsSuccessed)
+            {
+                return BadRequest(result.Message);
+            }
             return Ok();
         }
 
@@ -47,6 +62,13 @@ namespace eShopSolution.BackendApi.Controllers
         {
             var users = await _userService.GetUsersPaging(request);
             return Ok(users);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var user = await _userService.GetById(id);
+            return Ok(user);
         }
     }
 }

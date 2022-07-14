@@ -39,7 +39,7 @@ namespace eShopSolution.AdminApp.Controllers
             };
             var data = await _userApiClient.GetUserPagings(request);
 
-            return View(data);
+            return View(data.ResultObj);
         }
 
         [HttpPost]
@@ -61,9 +61,19 @@ namespace eShopSolution.AdminApp.Controllers
             if (!ModelState.IsValid)
                 return View();
             var result = await _userApiClient.RegisterUser(request);
-            if (result)
+            if (result.IsSuccessed)
                 return RedirectToAction("Index");
+
+            ModelState.AddModelError("", result.Message);
             return View(request);
+        }
+
+        //PUT: http://localhost/api/users/id
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UserUpdateRequest request)
+        {
+            var user = await _u
+            return Ok();
         }
     }
 }
