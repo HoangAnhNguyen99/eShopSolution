@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {
-    options.LoginPath = "/User/Login";
+    options.LoginPath = "/Login/Index";
     options.AccessDeniedPath = "/User/Forbidden";
 });
 // Add services to the container.
