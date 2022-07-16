@@ -25,8 +25,10 @@ namespace eShopSolution.BackendApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _userService.Authencate(request);
-            if (!result.IsSuccessed)
-                return BadRequest(result.Message);
+            if (string.IsNullOrEmpty(result.ResultObj))
+            {
+                return BadRequest(result);
+            }
             return Ok(result);
         }
 
@@ -38,8 +40,8 @@ namespace eShopSolution.BackendApi.Controllers
                 return BadRequest();
             var result = await _userService.Register(request);
             if (!result.IsSuccessed)
-                return BadRequest(result.Message);
-            return Ok();
+                return BadRequest(result);
+            return Ok(result);
         }
 
         //PUT: http://localhost/api/users/id
@@ -52,9 +54,9 @@ namespace eShopSolution.BackendApi.Controllers
             var result = await _userService.Update(id, request);
             if (!result.IsSuccessed)
             {
-                return BadRequest(result.Message);
+                return BadRequest(result);
             }
-            return Ok();
+            return Ok(result);
         }
 
         [HttpGet("paging")]

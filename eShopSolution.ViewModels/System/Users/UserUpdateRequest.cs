@@ -9,6 +9,7 @@ namespace eShopSolution.ViewModels.System.Users
 {
     public class UserUpdateRequest
     {
+        public Guid Id { get; set; }
         [Display(Name = "Tên")]
         public string FirstName { get; set; }
 

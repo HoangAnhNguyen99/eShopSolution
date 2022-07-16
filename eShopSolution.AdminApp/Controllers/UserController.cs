@@ -25,14 +25,9 @@ namespace eShopSolution.AdminApp.Controllers
 
         public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 10)
         {
-            var sessions = HttpContext.Session.GetString("Token");
-
-            if (string.IsNullOrEmpty(sessions))
-                return RedirectToAction("Login", "User");
 
             var request = new GetUserPagingRequest()
             {
-                BearerToken = sessions,
                 Keyword = keyword,
                 PageIndex = pageIndex,
                 PageSize = pageSize
@@ -68,12 +63,38 @@ namespace eShopSolution.AdminApp.Controllers
             return View(request);
         }
 
-        //PUT: http://localhost/api/users/id
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] UserUpdateRequest request)
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
         {
-            var user = await _u
-            return Ok();
+            var result = await _userApiClient.GetById(id);
+            if (result.IsSuccessed)
+            {
+                var user = result.ResultObj;
+                var updateRequestUser = new UserUpdateRequest()
+                {
+                    Dob = user.Dob,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    PhoneNumber = user.PhoneNumber,
+                    Id = id
+                };
+                return View(updateRequestUser);
+            }
+            return RedirectToAction("Error", "Home");
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(UserUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            var result = await _userApiClient.UpdateUser(request.Id, request);
+            if (result.IsSuccessed)
+                return RedirectToAction("Index");
+            ModelState.AddModelError("", result.Message);
+            return View(request);
         }
     }
 }
