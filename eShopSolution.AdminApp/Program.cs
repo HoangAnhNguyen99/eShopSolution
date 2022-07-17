@@ -23,6 +23,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddTransient<IUserApiClient, UserApiClient>();
+builder.Services.AddTransient<IRoleApiClient, RoleApiClient>();
 IMvcBuilder mvcBuilder = builder.Services.AddRazorPages();
 
 #if DEBUG
