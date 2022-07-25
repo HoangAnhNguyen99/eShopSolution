@@ -25,6 +25,7 @@ builder.Services.AddTransient<IUserApiClient, UserApiClient>();
 builder.Services.AddTransient<IRoleApiClient, RoleApiClient>();
 builder.Services.AddTransient<BaseApiClient, LanguageApiClient>();
 builder.Services.AddTransient<ILanguageApiClient, LanguageApiClient>();
+builder.Services.AddTransient<IProductApiClient, ProductApiClient>();
 
 IMvcBuilder mvcBuilder = builder.Services.AddRazorPages();
 
