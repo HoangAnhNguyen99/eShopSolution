@@ -1,6 +1,7 @@
 ﻿using eShopSolution.Data.Configurations;
 using eShopSolution.Data.Entities;
 using eShopSolution.Data.Extensions;
+using eShopSolution.ViewModels.Catalog.Products;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -16,12 +17,10 @@ namespace eShopSolution.Data.EF
     {
         public EShopDbContext(DbContextOptions options) : base(options)
         {
-           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             //Configure using Fluent API
             modelBuilder.ApplyConfiguration(new CartConfiguration());
 
@@ -58,7 +57,6 @@ namespace eShopSolution.Data.EF
 
         public DbSet<AppConfig> AppConfigs { get; set; }
 
-
         public DbSet<Cart> Carts { get; set; }
 
         public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
@@ -74,7 +72,6 @@ namespace eShopSolution.Data.EF
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
 
         public DbSet<Promotion> Promotions { get; set; }
-
 
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
