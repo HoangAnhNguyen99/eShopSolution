@@ -1,6 +1,7 @@
 ﻿using eSheopSolution.Utilities.Constants;
 using eShopSolution.AdminApp.Services;
 using eShopSolution.ViewModels.Catalog.Products;
+using eShopSolution.ViewModels.Common;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -67,6 +68,46 @@ namespace eShopSolution.AdminApp.Controllers
             }
             ModelState.AddModelError("", "Thêm sản phẩm thất bại");
             return View(request);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CategoryAssign(int id)
+        {
+            var roleAssignRequest = await GetCategoryAssignRequest(id);
+            return View(roleAssignRequest);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CategoryAssign(CategoryAssignRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            var result = await _productApiClient.CategoryAssign(request.Id, request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "";
+                return RedirectToAction("Index");
+            }
+            var categoryAssignRequest = await GetCategoryAssignRequest(request.Id);
+            return View(categoryAssignRequest);
+        }
+
+        private async Task<CategoryAssignRequest> GetCategoryAssignRequest(int id)
+        {
+            var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+            var productObj = await _productApiClient.GetById(id, languageId);
+            var categories = await _categoryApiClient.GetAll(languageId);
+            var categoryAssignRequest = new CategoryAssignRequest();
+            foreach (var category in categories)
+            {
+                categoryAssignRequest.Categories.Add(new SelectItem()
+                {
+                    Id = category.Id.ToString(),
+                    Name = category.Name,
+                    Selected = productObj.Categories.Contains(category.Name)
+                });
+            }
+            return categoryAssignRequest;
         }
     }
 }
