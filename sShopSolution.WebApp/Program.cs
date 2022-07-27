@@ -1,7 +1,28 @@
+using LazZiya.ExpressLocalization;
+using Microsoft.AspNetCore.Localization;
+using sShopSolution.WebApp.LocalizationResources;
+using System.Globalization;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var cultures = new[]
+{
+    new CultureInfo("en"),
+    new CultureInfo("vi"),
+};
+
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddExpressLocalization<ExpressLocalizationResource, ViewLocalizationResource>(ops =>
+{
+    ops.UseAllCultureProviders = false;
+    ops.ResourcesPath = "LocalizationResources";
+    ops.RequestLocalizationOptions = o =>
+    {
+        o.SupportedCultures = cultures;
+        o.SupportedCultures = cultures;
+        o.DefaultRequestCulture = new RequestCulture("vi");
+    };
+});
 
 var app = builder.Build();
 
@@ -20,8 +41,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseRequestLocalization();
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{culture=en}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
