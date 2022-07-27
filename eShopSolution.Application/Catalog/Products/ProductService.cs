@@ -357,20 +357,27 @@ namespace eShopSolution.Application.Catalog.Products
             var user = await _context.Products.FindAsync(id);
             if (user == null)
                 return new ApiErrorResult<bool>($"Sản phẩm với id {id} không tồn tại");
-            var removedCategories = request.Categories.Where(x => x.Selected == false).ToList();
-            foreach (var category in removedCategories)
+
+            foreach (var category in request.Categories)
             {
-                var productInCategory = await _context.ProductInCategories.FindAsync(id, category.Id);
-                if (productInCategory != null)
+                var productInCategory = await _context.ProductInCategories
+                    .FirstOrDefaultAsync(x => x.CategoryId == int.Parse(category.Id)
+                    && x.ProductId == id);
+
+                if (productInCategory != null && category.Selected == false)
+                {
                     _context.ProductInCategories.Remove(productInCategory);
+                }
+                else if (productInCategory == null && category.Selected)
+                {
+                    await _context.ProductInCategories.AddAsync(new ProductInCategory()
+                    {
+                        CategoryId = int.Parse(category.Id),
+                        ProductId = id
+                    });
+                }
             }
-            var addedCategories = request.Categories.Where(x => x.Selected).ToList();
-            foreach (var category in addedCategories)
-            {
-                var productInCategory = await _context.ProductInCategories.FindAsync(id, category.Id);
-                if (productInCategory == null)
-                    await _context.ProductInCategories.AddAsync(productInCategory);
-            }
+
             await _context.SaveChangesAsync();
             return new ApiSuccessResult<bool>(true);
         }
