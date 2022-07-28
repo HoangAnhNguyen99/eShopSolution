@@ -1,7 +1,7 @@
 ﻿using eShopSolution.ViewModels.Catalog.Categories;
 using eShopSolution.ViewModels.Common;
 
-namespace eShopSolution.AdminApp.Services
+namespace eShopSolution.ApiIntegration
 {
     public interface ICategoryApiClient
     {

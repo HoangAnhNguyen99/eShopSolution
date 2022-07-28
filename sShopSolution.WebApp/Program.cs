@@ -1,9 +1,12 @@
+using eShopSolution.ApiIntegration;
 using LazZiya.ExpressLocalization;
 using Microsoft.AspNetCore.Localization;
 using sShopSolution.WebApp.LocalizationResources;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpClient();
 
 var cultures = new[]
 {
@@ -24,6 +27,14 @@ builder.Services.AddControllersWithViews().AddExpressLocalization<ExpressLocaliz
     };
 });
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+});
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddTransient<ISlideApiClient, SlideApiClient>();
+builder.Services.AddTransient<IProductApiClient, ProductApiClient>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,6 +51,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.UseRequestLocalization();
 

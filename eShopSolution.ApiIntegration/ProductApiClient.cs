@@ -1,11 +1,13 @@
 ﻿using eSheopSolution.Utilities.Constants;
 using eShopSolution.ViewModels.Catalog.Products;
 using eShopSolution.ViewModels.Common;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace eShopSolution.AdminApp.Services
+namespace eShopSolution.ApiIntegration
 {
     public class ProductApiClient : BaseApiClient, IProductApiClient
     {
@@ -49,7 +51,7 @@ namespace eShopSolution.AdminApp.Services
 
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", sessions);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
             var requestContent = new MultipartFormDataContent();
             if (request.ThumbnailImage != null)
             {
@@ -79,6 +81,12 @@ namespace eShopSolution.AdminApp.Services
         public async Task<ProductViewModel> GetById(int id, string languageId)
         {
             var data = await GetAsync<ProductViewModel>($"/api/products/{id}/{languageId}");
+            return data;
+        }
+
+        public async Task<List<ProductViewModel>> GetFeaturedProducts(string languageId, int take)
+        {
+            var data = await GetListAsync<ProductViewModel>($"/api/products/featured/{languageId}/{take}");
             return data;
         }
 

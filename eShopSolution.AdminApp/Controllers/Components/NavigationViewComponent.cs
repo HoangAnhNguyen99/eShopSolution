@@ -1,6 +1,6 @@
 ﻿using eSheopSolution.Utilities.Constants;
 using eShopSolution.AdminApp.Models;
-using eShopSolution.AdminApp.Services;
+using eShopSolution.ApiIntegration;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eShopSolution.AdminApp.Controllers.Components

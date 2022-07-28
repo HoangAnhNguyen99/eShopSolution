@@ -1,8 +1,10 @@
 ﻿using eShopSolution.ViewModels.Common;
 using eShopSolution.ViewModels.System.Roles;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace eShopSolution.AdminApp.Services
+namespace eShopSolution.ApiIntegration
 {
     public class RoleApiClient : IRoleApiClient
     {

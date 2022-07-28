@@ -1,7 +1,7 @@
 ﻿using eShopSolution.ViewModels.Common;
 using eShopSolution.ViewModels.System.Users;
 
-namespace eShopSolution.AdminApp.Services
+namespace eShopSolution.ApiIntegration
 {
     public interface IUserApiClient
     {
@@ -14,7 +14,9 @@ namespace eShopSolution.AdminApp.Services
         Task<ApiResult<bool>> UpdateUser(Guid id, UserUpdateRequest request);
 
         Task<ApiResult<UserViewModel>> GetById(Guid id);
+
         Task<ApiResult<bool>> Delete(Guid id);
+
         Task<ApiResult<bool>> RoleAssign(Guid id, RoleAssignRequest request);
     }
 }

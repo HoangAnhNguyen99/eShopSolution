@@ -26,7 +26,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{B76AE6DC-9288-4A42-8FE2-64B378D9B134}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopSolution.AdminApp", "eShopSolution.AdminApp\eShopSolution.AdminApp.csproj", "{6EF1116B-AC01-4C84-B90C-9718A96DB3FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopSolution.AdminApp", "eShopSolution.AdminApp\eShopSolution.AdminApp.csproj", "{6EF1116B-AC01-4C84-B90C-9718A96DB3FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopSolution.ApiIntegration", "eShopSolution.ApiIntegration\eShopSolution.ApiIntegration.csproj", "{E9E0157E-6AE7-4261-960F-E487A0CB8899}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{6EF1116B-AC01-4C84-B90C-9718A96DB3FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EF1116B-AC01-4C84-B90C-9718A96DB3FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EF1116B-AC01-4C84-B90C-9718A96DB3FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9E0157E-6AE7-4261-960F-E487A0CB8899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9E0157E-6AE7-4261-960F-E487A0CB8899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9E0157E-6AE7-4261-960F-E487A0CB8899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9E0157E-6AE7-4261-960F-E487A0CB8899}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{D14859FC-44EA-45FC-BA2B-57C99188276B} = {96E859E7-6CD1-4393-89BA-477F46F8EFA6}
 		{A769B878-052B-4F38-A562-708802DEF74A} = {B76AE6DC-9288-4A42-8FE2-64B378D9B134}
 		{6EF1116B-AC01-4C84-B90C-9718A96DB3FD} = {B76AE6DC-9288-4A42-8FE2-64B378D9B134}
+		{E9E0157E-6AE7-4261-960F-E487A0CB8899} = {B76AE6DC-9288-4A42-8FE2-64B378D9B134}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F503F6CD-C0C1-441B-9052-27E37B73F64C}

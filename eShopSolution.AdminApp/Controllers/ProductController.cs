@@ -1,5 +1,5 @@
 ﻿using eSheopSolution.Utilities.Constants;
-using eShopSolution.AdminApp.Services;
+using eShopSolution.ApiIntegration;
 using eShopSolution.ViewModels.Catalog.Products;
 using eShopSolution.ViewModels.Common;
 using Microsoft.AspNetCore.Mvc;
