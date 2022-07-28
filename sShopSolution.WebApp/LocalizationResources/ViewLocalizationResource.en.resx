@@ -125,6 +125,10 @@
     <value>Delivery</value>
     <comment>Layouts</comment>
   </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+    <comment>Layouts</comment>
+  </data>
   <data name="Featured Products" xml:space="preserve">
     <value>Featured Products</value>
     <comment>/Home/Index</comment>
@@ -135,6 +139,10 @@
   </data>
   <data name="Specials Offer" xml:space="preserve">
     <value>Specials Offer</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Vietnamses" xml:space="preserve">
+    <value>Vietnamses</value>
     <comment>Layouts</comment>
   </data>
 </root>

@@ -19,7 +19,7 @@ builder.Services.AddControllersWithViews().AddExpressLocalization<ExpressLocaliz
     ops.RequestLocalizationOptions = o =>
     {
         o.SupportedCultures = cultures;
-        o.SupportedCultures = cultures;
+        o.SupportedUICultures = cultures;
         o.DefaultRequestCulture = new RequestCulture("vi");
     };
 });

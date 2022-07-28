@@ -125,6 +125,10 @@
     <value>Giao hàng</value>
     <comment>Layouts</comment>
   </data>
+  <data name="English" xml:space="preserve">
+    <value>Tiếng Anh</value>
+    <comment>Layouts</comment>
+  </data>
   <data name="Featured Products" xml:space="preserve">
     <value>Sản phẩm nổi bật</value>
     <comment>/Home/Index</comment>
@@ -135,6 +139,10 @@
   </data>
   <data name="Specials Offer" xml:space="preserve">
     <value>Khuyến mãi đặc biệt</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Vietnamese" xml:space="preserve">
+    <value>Tiếng Việt</value>
     <comment>Layouts</comment>
   </data>
 </root>
