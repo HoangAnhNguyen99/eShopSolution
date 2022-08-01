@@ -30,7 +30,8 @@ namespace sShopSolution.WebApp.Controllers
             var viewModel = new HomeViewModel
             {
                 Slides = await _slideApiClient.GetAll(),
-                FeaturedProducts = await _productApiClient.GetFeaturedProducts(culture, SystemConstants.ProductGettings.NumberOfFeaturedProducts)
+                FeaturedProducts = await _productApiClient.GetFeaturedProducts(culture, SystemConstants.ProductGettings.NumberOfFeaturedProducts),
+                LatestProducts = await _productApiClient.GetLastestProducts(culture, SystemConstants.ProductGettings.NumberOfLatestProducts)
             };
             return View(viewModel);
         }
