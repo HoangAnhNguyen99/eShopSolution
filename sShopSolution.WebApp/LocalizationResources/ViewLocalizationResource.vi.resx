@@ -121,6 +121,10 @@
     <value>Thêm vào</value>
     <comment>/Home/Index</comment>
   </data>
+  <data name="categoryUrl" xml:space="preserve">
+    <value>danh-muc</value>
+    <comment>Layouts</comment>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>LIên hệ</value>
     <comment>Layouts</comment>

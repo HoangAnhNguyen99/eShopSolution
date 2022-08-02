@@ -121,6 +121,10 @@
     <value>Add to</value>
     <comment>/Home/Index</comment>
   </data>
+  <data name="categoryUrl" xml:space="preserve">
+    <value>categories</value>
+    <comment>Layouts</comment>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
     <comment>Layouts</comment>
