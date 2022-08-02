@@ -1,7 +1,7 @@
 ﻿using eShopSolution.ViewModels.Catalog.Products;
 using eShopSolution.ViewModels.Common;
 
-namespace eShopSolution.AdminApp.Services
+namespace eShopSolution.ApiIntegration
 {
     public interface IProductApiClient
     {
@@ -12,5 +12,9 @@ namespace eShopSolution.AdminApp.Services
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
 
         Task<ProductViewModel> GetById(int id, string languageId);
+
+        Task<List<ProductViewModel>> GetFeaturedProducts(string languageId, int take);
+
+        Task<List<ProductViewModel>> GetLastestProducts(string languageId, int take);
     }
 }

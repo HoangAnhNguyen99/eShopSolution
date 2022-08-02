@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eShopSolution.Data.EF;
 
@@ -11,9 +12,10 @@ using eShopSolution.Data.EF;
 namespace eShopSolution.Data.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220728032736_HomeData")]
+    partial class HomeData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,7 +83,7 @@ namespace eShopSolution.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "3aa5dd70-2154-4b61-952a-95df67e57384",
+                            ConcurrencyStamp = "01f71330-0a3d-45f4-8696-b755242d86a6",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -158,7 +160,7 @@ namespace eShopSolution.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "eea8b172-656a-4dd6-8442-b00dcbcd5a10",
+                            ConcurrencyStamp = "08444582-1820-41d9-b83d-b8cc4690dcdf",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tedu.international@gmail.com",
                             EmailConfirmed = true,
@@ -167,7 +169,7 @@ namespace eShopSolution.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tedu.international@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPDm8lk/q2aR/pMQu+9aKVy8UuHTQG1Fwj6UIdzmUJlzkvmMr/riR/1EMUVJbAruCw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGPCuMQNEx8mT5HCx4X2G9P50r8m0eLYKuAZornAcyCch91sM1Kr8+wMHwqAnKJKfA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -511,7 +513,7 @@ namespace eShopSolution.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2022, 8, 1, 15, 36, 18, 209, DateTimeKind.Local).AddTicks(2959),
+                            DateCreated = new DateTime(2022, 7, 28, 10, 27, 35, 380, DateTimeKind.Local).AddTicks(3016),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
