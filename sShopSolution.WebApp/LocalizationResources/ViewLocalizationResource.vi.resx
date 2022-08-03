@@ -119,7 +119,11 @@
   </resheader>
   <data name="Add to" xml:space="preserve">
     <value>Thêm vào</value>
-    <comment>/Home/Index</comment>
+    <comment>Common</comment>
+  </data>
+  <data name="available products" xml:space="preserve">
+    <value>Sản phẩm có sẵn</value>
+    <comment>Product/Category</comment>
   </data>
   <data name="categoryUrl" xml:space="preserve">
     <value>danh-muc</value>
@@ -149,8 +153,24 @@
     <value>Đăng nhập</value>
     <comment>Layouts</comment>
   </data>
+  <data name="New | Available" xml:space="preserve">
+    <value>Có sẵn</value>
+    <comment>Common</comment>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Trang</value>
+    <comment>Common</comment>
+  </data>
+  <data name="products" xml:space="preserve">
+    <value>san-pham</value>
+    <comment>Common</comment>
+  </data>
   <data name="productUrl" xml:space="preserve">
     <value>san-pham</value>
+  </data>
+  <data name="Sort By" xml:space="preserve">
+    <value>Sắp xếp</value>
+    <comment>Product/Category</comment>
   </data>
   <data name="Specials Offer" xml:space="preserve">
     <value>Khuyến mãi đặc biệt</value>
@@ -163,5 +183,9 @@
   <data name="VIEW" xml:space="preserve">
     <value>XEM</value>
     <comment>/Home/Index</comment>
+  </data>
+  <data name="View details" xml:space="preserve">
+    <value>Xem chi tiết</value>
+    <comment>Product/Category</comment>
   </data>
 </root>
