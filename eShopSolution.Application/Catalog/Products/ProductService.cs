@@ -21,6 +21,7 @@ namespace eShopSolution.Application.Catalog.Products
     {
         private readonly EShopDbContext _context;
         private readonly IStorageService _storageService;
+        private const string USER_CONTENT_FOLDER_NAME = "user-content";
 
         public ProductService(EShopDbContext context, IStorageService storageService)
         {
@@ -372,7 +373,7 @@ namespace eShopSolution.Application.Catalog.Products
             var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
-            return fileName;
+            return $"/{USER_CONTENT_FOLDER_NAME}/{fileName}";
         }
 
         public async Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request)
