@@ -37,7 +37,10 @@
     <div id="header">
         <div class="container">
             <div id="welcomeLine" class="row">
-                <div class="span6">Welcome!<strong> User</strong></div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="span6">Welcome!<strong> @User.Identity.Name</strong></div>
+                }
                 <div class="span6">
                     <div class="pull-right">
                         @*<a href="/en/Home/SetCultureCookie?cltr=en&returnUrl=/en"><span class="" localize-content>English</span></a>
@@ -76,8 +79,21 @@
                         <li class=""><a asp-route-culture="@culture" localize-content>Delivery</a></li>
                         <li class=""><a asp-route-culture="@culture" localize-content>Contact</a></li>
                         <li class="">
-                            <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success"><localize>Login</localize></span></a>
-                            <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <form action="/@culture/Account/Logout" method="post">
+                                    <button type="submit" style="padding-right: 0; margin-top: 10px; margin-bottom: 10px; background: transparent; border: none;">
+                                        <span class="btn btn-large btn-success"><localize>Logout</localize></span>
+                                    </button>
+                                </form>
+                            }else
+                            {
+                                <a href="/@culture/Account/Login" style="padding-right:0">
+                                    <span class="btn btn-large btn-success"><localize>Login</localize></span>
+                                </a>
+                            }
+
+                            @*<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                     <h3>Login Block</h3>
@@ -99,7 +115,7 @@
                                     <button type="submit" class="btn btn-success">Sign in</button>
                                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                                 </div>
-                            </div>
+                            </div>*@
                         </li>
                     </ul>
                 </div>
