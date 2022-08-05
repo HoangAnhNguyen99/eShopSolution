@@ -20,21 +20,29 @@ namespace eShopSolution.WebApp.Controllers
             return View();
         }
 
-        [HttpPost("{id}/{languageId}")]
+        public IActionResult GetListItems()
+        {
+            var session = HttpContext.Session.GetString(SystemConstants.CartSession);
+            List<CartItemViewModel> currentCart = new List<CartItemViewModel>();
+            if (session != null)
+                currentCart = JsonConvert.DeserializeObject<List<CartItemViewModel>>(session);
+            return Ok(currentCart);
+        }
+
         public async Task<IActionResult> AddToCart(int id, string languageId)
         {
             var product = await _productApiClient.GetById(id, languageId);
 
             var session = HttpContext.Session.GetString(SystemConstants.CartSession);
-            List<CartItemViewModel> cartItems = new List<CartItemViewModel>();
+            List<CartItemViewModel> currentCart = new List<CartItemViewModel>();
             if (session != null)
                 currentCart = JsonConvert.DeserializeObject<List<CartItemViewModel>>(session);
 
-            var curentCart = JsonConvert.DeserializeObject<List<CartItemViewModel>>(HttpContext.Session.GetString(SystemConstants.CartSession));
+            //var curentCart = JsonConvert.DeserializeObject<List<CartItemViewModel>>(HttpContext.Session.GetString(SystemConstants.CartSession));
             int quantity = 1;
-            if (curentCart.Any(x => x.ProductId == id))
+            if (currentCart.Any(x => x.ProductId == id))
             {
-                quantity = curentCart.First(x => x.ProductId == id).Quantity + 1;
+                quantity = currentCart.First(x => x.ProductId == id).Quantity + 1;
             }
             var cartItem = new CartItemViewModel()
             {
@@ -42,12 +50,13 @@ namespace eShopSolution.WebApp.Controllers
                 Description = product.Description,
                 Image = product.ThumbnailImage,
                 Name = product.Name,
-                Quantity = quantity
+                Quantity = quantity,
+                Price = product.Price
             };
 
-            curentCart.Add(cartItem);
-            HttpContext.Session.SetString(SystemConstants.CartSession, JsonConvert.SerializeObject(curentCart));
-            return View();
+            currentCart.Add(cartItem);
+            HttpContext.Session.SetString(SystemConstants.CartSession, JsonConvert.SerializeObject(currentCart));
+            return Ok(currentCart);
         }
     }
 }
